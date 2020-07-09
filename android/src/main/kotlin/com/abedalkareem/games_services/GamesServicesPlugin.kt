@@ -226,7 +226,8 @@ class GamesServicesPlugin(private var activity: Activity? = null) : FlutterPlugi
         submitScore(leaderboardID, score, result)
       }
       Methods.showLeaderboards -> {
-        showLeaderboards(call.argument<String>("androidLeaderboardID"), result)
+        val androidLeaderboardID = call.argument<String>("androidLeaderboardID") ?: ""
+        showLeaderboards(androidLeaderboardID, result)
       }
       Methods.showAchievements -> {
         showAchievements(result)
