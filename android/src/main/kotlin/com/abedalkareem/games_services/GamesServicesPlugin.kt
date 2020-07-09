@@ -103,9 +103,9 @@ class GamesServicesPlugin(private var activity: Activity? = null) : FlutterPlugi
             }
   }
 
-  private fun showLeaderboards(result: Result) {
+  private fun showLeaderboards(leaderboardID: String, result: Result) {
     showLoginErrorIfNotLoggedIn(result)
-    leaderboardsClient!!.allLeaderboardsIntent.addOnSuccessListener { intent ->
+    leaderboardsClient!!.getLeaderboardIntent(leaderboardID).addOnSuccessListener { intent ->
       activity?.startActivityForResult(intent, 0)
       result.success("success")
     }.addOnFailureListener {
@@ -226,7 +226,7 @@ class GamesServicesPlugin(private var activity: Activity? = null) : FlutterPlugi
         submitScore(leaderboardID, score, result)
       }
       Methods.showLeaderboards -> {
-        showLeaderboards(result)
+        showLeaderboards(call.argument<String>("androidLeaderboardID"), result)
       }
       Methods.showAchievements -> {
         showAchievements(result)

@@ -38,9 +38,9 @@ class GamesServices {
   }
 
   /// It will open the leaderboards screen.
-  static Future<String> showLeaderboards({iOSLeaderboardID = ""}) async {
+  static Future<String> showLeaderboards({androidLeaderboardID = "", iOSLeaderboardID = ""}) async {
     return await _channel
-        .invokeMethod("showLeaderboards", {"iOSLeaderboardID": iOSLeaderboardID});
+        .invokeMethod("showLeaderboards", {"androidLeaderboardID": androidLeaderboardID, "iOSLeaderboardID": iOSLeaderboardID});
   }
 
   /// To sign in the user.
